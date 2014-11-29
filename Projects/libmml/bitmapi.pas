@@ -8,11 +8,9 @@ function create_bitmap_string(C: TClient; bmp: Integer; var test: PChar): Intege
 var s: string;
 begin
   try
-    begin
-      s := C.MBitmaps[bmp].ToString;
-      test := @s[1];
-      result := RESULT_OK;
-    end;
+    s := C.MBitmaps[bmp].ToString;
+    test := @s[1];
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);
@@ -24,10 +22,8 @@ end;
 function get_mufasa_bitmap(C: TClient; bmp: Integer; var test: TMufasaBitmap): Integer; cdecl;
 begin
   try
-    begin
-      test := C.MBitmaps[bmp];
-      result := RESULT_OK;
-    end;
+    test := C.MBitmaps[bmp];
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);
@@ -39,10 +35,8 @@ end;
 function create_bitmap(C: TClient; w, h: Integer; var test: Integer): Integer; cdecl;
 begin
   try
-    begin
-      test := C.MBitmaps.CreateBMP(w, h);
-      result := RESULT_OK;
-    end;
+    test := C.MBitmaps.CreateBMP(w, h);
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);
@@ -54,10 +48,8 @@ end;
 function free_bitmap(C: TClient; bmp: Integer): Integer; cdecl;
 begin
   try
-    begin
-      C.MBitmaps.FreeBMP(bmp);
-      result := RESULT_OK;
-    end;
+    C.MBitmaps.FreeBMP(bmp);
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);
@@ -69,10 +61,8 @@ end;
 function save_bitmap(C: TClient; bmp: Integer; path: PChar): Integer; cdecl;
 begin
   try
-    begin
-      C.MBitmaps[bmp].SaveToFile(path);
-      result := RESULT_OK;
-    end;
+    C.MBitmaps[bmp].SaveToFile(path);
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);
@@ -85,10 +75,8 @@ end;
 function set_persistent_memory_bitmap(C: TClient; bmp: Integer; mem: PtrUInt; awidth, aheight: Integer): Integer; cdecl;
 begin
   try
-    begin
-      C.MBitmaps[bmp].SetPersistentMemory(mem, awidth, aheight);
-      result := RESULT_OK;
-    end;
+    C.MBitmaps[bmp].SetPersistentMemory(mem, awidth, aheight);
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);
@@ -101,10 +89,8 @@ end;
 function reset_persistent_memory_bitmap(C: TClient; bmp: Integer): Integer; cdecl;
 begin
   try
-    begin
-      C.MBitmaps[bmp].ResetPersistentMemory();
-      result := RESULT_OK;
-    end;
+    C.MBitmaps[bmp].ResetPersistentMemory();
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);
@@ -116,10 +102,8 @@ end;
 function bitmap_from_string(C: TClient; width, height: Integer; data: PChar; var test: Integer): Integer; cdecl;
 begin
   try
-    begin
-      test := C.MBitmaps.CreateBMPFromString(width, height, data);
-      result := RESULT_OK;
-    end;
+    test := C.MBitmaps.CreateBMPFromString(width, height, data);
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);
@@ -131,10 +115,8 @@ end;
 function load_bitmap(C: TClient; path: PChar; var test: Integer): Integer; cdecl;
 begin
   try
-    begin
-      test := C.MBitmaps.CreateBMPFromFile(path);
-      result := RESULT_OK;
-    end;
+    test := C.MBitmaps.CreateBMPFromFile(path);
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);
@@ -147,10 +129,8 @@ end;
 function set_bitmap_size(C: TClient; bmp, newW, newH: Integer): Integer; cdecl;
 begin
   try
-    begin
-      C.MBitmaps[bmp].SetSize(newW, newH);
-      result := RESULT_OK;
-    end;
+    C.MBitmaps[bmp].SetSize(newW, newH);
+    result := RESULT_OK;
   except on e : Exception do
     begin
       set_last_error(e.Message);

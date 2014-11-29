@@ -1,14 +1,14 @@
-library mml;
+library tpai;
 
 {
 libMML - the C-like interface to MML.
 
 Will (eventually) support the following functionality:
-    [ ] -   Bitmap creation and find functions.
-    [ ] -   DTM creation and find functions
+    [/] -   Bitmap creation and find functions.
+    [/] -   DTM creation and find functions
     [/] -   Color find, get (and convert?) functions.
     [/] -   Mouse/Keyboard functions.
-    [ ] -   OCR Engine + functions. (font loader?)
+    [/] -   OCR Engine + functions. (font loader?)
 
 It should not include:
     -   Simba file functions (the stdlib of other languages should suffice)
@@ -204,6 +204,7 @@ end;
 {$I ocri.pas}
 {$I windowi.pas}
 {$I bitmapi.pas}
+{$I tpai.pas}
 
 
 (*
@@ -271,8 +272,15 @@ exports
   set_tolerance_speed_2_modifiers, get_tolerance_speed_2_modifiers,
 
   find_dtms, // I did not implement this, only exported for testing
+  find_dtm_rotated_alternating, find_dtm_rotated_se,
+  find_dtms_rotated_alternating, find_dtms_rotated_se, set_dtm_name,
+  dtm_from_string, get_dtm, add_tsdtm, print_dtm, mdtm_to_sdtm, sdtm_to_mdtm,
+  create_dtm_point, dtm_exists, filter_up_text_by_characteristics,
+  set_up_text_filter, reset_up_text_filter,
 
-  rs_get_up_text, rs_get_up_text_at_ex, rs_get_up_text_at,
+  rs_get_up_text, rs_get_up_text_at_ex, rs_get_up_text_at, rs_bitmap_from_text,
+  mask_from_text, tpa_from_text_wrap, tpa_from_text, get_text_tpa, get_text_at,
+  get_text_at_ex, load_system_font, load_font, free_font,
 
   set_desktop_as_client, free_target, get_client_dimensions,
   get_client_position, freeze, unfreeze, activate_client, is_target_valid,

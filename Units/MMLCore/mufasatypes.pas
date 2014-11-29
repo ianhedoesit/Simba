@@ -97,6 +97,12 @@ type
   TExtendedArray = Array of Extended;
   T2DExtendedArray = Array of Array of Extended;
 
+  // XXX: This is currently being used as Extended is 10 bytes, and Python's
+  // ctypes module doesn't have anything to support that. Using 8 bytes seems
+  // better anyway, imo. - ianhedoesit
+  TDoubleArray = Array of Double;
+  T2DDoubleArray = Array of Array of Double;
+
   { Crypto }
   THashType = (htHaval, htMD4, htMD5, htRIPEMD128, htRIPEMD160,
                htSHA1, htSHA256, htSHA384, htSHA512, htTiger);
