@@ -93,13 +93,15 @@ function TPAFromBox(const Box : TBox) : TPointArray;
 function TPAFromEllipse(const CX, CY, XRadius, YRadius : Integer): TPointArray;
 function TPAFromCircle(const CX, CY, Radius: Integer): TPointArray;
 procedure FillEllipse(var a: TPointArray);
+function RotatePoints(const P: TPointArray; A, cx, cy: Extended): TPointArray;
+function RotatePoint(const p: TPoint; angle, mx, my: Extended): TPoint;
 function FindTPAEdges(const p: TPointArray): TPointArray;
 function PointInTPA(const p: TPoint;const arP: TPointArray): Boolean;
 function ClearTPAFromTPA(const arP, ClearPoints: TPointArray): TPointArray;
 procedure ClearDoubleTPA(var TPA: TPointArray);
 Function ReturnPointsNotInTPA(Const TotalTPA: TPointArray; const Box: TBox): TPointArray;
 Procedure TPACountSort(Var TPA: TPointArray;const max: TPoint;Const SortOnX : Boolean);
-Procedure TPACountSortBase(Var TPA: TPointArray;const maxx, base: TPoint; const SortOnX : Boolean);
+Procedure TPACountSortBase(Var TPA: TPointArray;const max, base: TPoint; const SortOnX : Boolean);
 procedure InvertTIA(var tI: TIntegerArray);
 function SumIntegerArray(const Ints : TIntegerArray): Integer;
 function AverageTIA(const tI: TIntegerArray): Integer;
@@ -2497,20 +2499,20 @@ End;
   Sorts a TPointArray by either X or Y. Allows one to pass a Base.
 /\}
 
-Procedure TPACountSortBase(Var TPA: TPointArray;const maxx, base: TPoint; const SortOnX : Boolean);
+Procedure TPACountSortBase(Var TPA: TPointArray;const max, base: TPoint; const SortOnX : Boolean);
 Var
    c: T2DIntegerArray;
    I, II, III, hTPA, cc: Integer;
-   Max : TPoint;
+   _max : TPoint;
 Begin
   hTPA := High(TPA);
   if hTPA < 1 then
     Exit;
-  max.X := maxx.X - base.X;
-  max.Y := maxx.Y - base.Y;
-  SetLength(c, max.X + 1,max.Y + 1);
-  for i := max.x downto 0 do
-    FillChar(c[i][0],(max.y+1)*sizeof(integer),0);
+  _max.X := max.X - base.X;
+  _max.Y := max.Y - base.Y;
+  SetLength(c, _max.X + 1,_max.Y + 1);
+  for i := _max.x downto 0 do
+    FillChar(c[i][0],(_max.y+1)*sizeof(integer),0);
   hTPA := High(TPA);
   For I := 0 To hTPA Do
     c[TPA[I].x - base.X][TPA[I].y - base.Y] := c[TPA[i].x- base.X][TPA[i].y- base.Y] + 1;
@@ -2518,8 +2520,8 @@ Begin
   cc := 0;
   if SortOnX then
   begin
-    For I := 0 To max.X  Do
-      For II := 0 To max.Y  Do
+    For I := 0 To _max.X  Do
+      For II := 0 To _max.Y  Do
       Begin
         For III := 0 To c[I][II] - 1 Do
         Begin
@@ -2530,8 +2532,8 @@ Begin
       End;
   end else
   begin;
-    For II := 0 To max.Y  Do
-      For I := 0 To max.X  Do
+    For II := 0 To _max.Y  Do
+      For I := 0 To _max.X  Do
       Begin
         For III := 0 To c[I][II] - 1 Do
         Begin

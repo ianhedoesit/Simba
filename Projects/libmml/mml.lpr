@@ -24,7 +24,7 @@ Debatable:
 
 uses
   cmem, Classes, interfaces, graphics, client, sysutils, MufasaTypes, dtmutil,
-  dtm, IOManager, bitmaps;
+  dtm, IOManager, bitmaps, tpa, mmath, colour_conv;
 
 //{$R *.res}
 
@@ -205,7 +205,7 @@ end;
 {$I windowi.pas}
 {$I bitmapi.pas}
 {$I tpai.pas}
-
+{$I colourconvi.pas}
 
 (*
 Client Functions
@@ -306,7 +306,33 @@ exports
   find_mask_tolerance, find_bitmap_mask_tolerance,
   find_deformed_bitmap_tolerance_in, rectangle_bitmap, flood_fill_bitmap,
   convolute_bitmap, calculate_pixel_shift, calculate_pixel_shift_tpa,
-  calculate_pixel_tolerance, calculate_pixel_tolerance_tpa, bitmap_exists;
+  calculate_pixel_tolerance, calculate_pixel_tolerance_tpa, bitmap_exists,
+
+  quick_sort, t_swap, tpa_swap, swap_e, ra_a_s_tpa_ex, ra_a_s_tpa,
+  nearby_point_in_array_ex, nearby_point_in_array, quick_tpa_sort,
+  quick_atpa_sort, sort_tpa_by_x, sort_tpa_by_y, find_tpa_rows,
+  find_tpa_columns, sort_tpa_from, sort_atpa_from, sort_atpa_from_first_point,
+  sort_atpa_from_mid_point, invert_tpa, invert_atpa, middle_tpa_ex, middle_tpa,
+  sort_atpa_size, sort_atpa_from_size, in_int_array_ex, in_int_array,
+  clear_same_integers, clear_same_integers_and_tpa, split_tpa_ex, split_tpa,
+  flood_fill_tpa, filter_points_pie_ex, filter_points_pie, filter_points_dist,
+  filter_points_line, filter_tpa_dist, get_atpa_bounds, get_tpa_bounds,
+  find_tpa_in_tpa, get_same_points_atpa, find_text_tpa_in_tpa,
+  sort_circle_wise, linear_sort, rotate_point, change_dist_pt, change_dist_tpa,
+  find_gaps_tpa, remove_dist_tpa, combine_tpa, re_arrange_and_shorten_array_ex,
+  re_arrange_and_shorten_array, tpa_to_atpa_ex, tpa_to_atpa, combine_int_array,
+  merge_atpa, append_tpa, tpa_from_line, edge_from_box, tpa_from_box,
+  tpa_from_ellipse, tpa_from_circle, fill_ellipse, rotate_points,
+  find_tpa_edges, clear_tpa_from_tpa, return_points_not_in_tpa, point_in_tpa,
+  clear_double_tpa, tpa_count_sort, tpa_count_sort_base, invert_tia,
+  sum_integer_array, average_tia, average_extended, same_tpa, tpa_in_atpa,
+  offset_tpa, offset_atpa, copy_tpa, copy_atpa, middle_box, tpa_pos_next,
+  glue_tpas,
+
+  color_to_rgb, rgb_to_color, color_to_hsl, hsl_to_color, color_to_xyz,
+  xyz_to_color, rgb_to_hsl, hsl_to_rgb, rgb_to_xyz, xyz_to_rgb, xyz_to_hsl,
+  hsl_to_xyz, xyz_to_cie_lab, cie_lab_to_xyz, cie_lab_to_rgb, rgb_to_cie_lab,
+  cie_lab_to_color, color_to_cie_lab, cie_lab_to_hsl, hsl_to_cie_lab;
 
 begin
 end.
